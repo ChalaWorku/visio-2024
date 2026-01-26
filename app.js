@@ -1,0 +1,1 @@
+const http = require('http'); const server = http.createServer((req, res) => { res.end('Baga nagaan gara marsariitii koo dhufte!'); }); server.listen(3000, () => { console.log('Serveriin kee http://localhost:3000 irratti hojjechaa jira'); });
