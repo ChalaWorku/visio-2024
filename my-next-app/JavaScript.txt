@@ -1,0 +1,22 @@
+import clientPromise from "@/lib/mongodb";
+
+export default async function Home() {
+  const client = await clientPromise;
+  const db = client.db("chala_database");
+  
+  // 'group_1' keessaa data jiru hunda fidi
+  const users = await db.collection("group_1").find({}).toArray();
+
+  return (
+    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
+      <h1>Galmee Barattootaa (MongoDB)</h1>
+      {users.map((user) => (
+        <div key={user._id.toString()} style={{ border: "1px solid #ccc", margin: "10px 0", padding: "10px" }}>
+          <p><strong>Maqaa:</strong> {user.name}</p>
+          <p><strong>Umrii:</strong> {user.age}</p>
+          <p><strong>Hojii:</strong> {user.work}</p>
+        </div>
+      ))}
+    </div>
+    )
+}
